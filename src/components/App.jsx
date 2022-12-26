@@ -293,7 +293,7 @@ const App = () => {
 	const { contract, user, pools } = useReach()
 
 	return (
-		<>
+		<div className={cf(s.window)}>
 			{!user.address ? (
 				<ConnectWallet />
 			) : !contract.addID ? (
@@ -313,7 +313,7 @@ const App = () => {
 					<Create />
 				</div>
 			)}
-		</>
+		</div>
 	)
 }
 
