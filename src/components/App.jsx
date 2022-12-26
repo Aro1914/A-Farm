@@ -298,7 +298,7 @@ const App = () => {
 		<div className={cf(s.window)}>
 			{!user.address ? (
 				<ConnectWallet />
-			) : !contract.addID ? (
+			) : !contract.appID ? (
 				<Launch />
 			) : (
 				<div className={cf(s.window, s.wMax, s.flex, s.flexCenter)}>
