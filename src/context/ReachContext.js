@@ -200,7 +200,7 @@ const ReachContextProvider = ({ children }) => {
 							'. Please sign the next transaction to save your farm on the platform'
 					)
 					try {
-						const id = contractInstance.apis.notify(await farmCtc.getInfo())
+						const id = await contractInstance.apis.notify(await farmCtc.getInfo())
 						alert('Farm uploaded with ID: ' + reach.bigNumberToNumber(id))
 					} catch (error) {
 						console.log({ error })
