@@ -128,74 +128,69 @@ const Pool = ({ poolInfo }) => {
 		}
 	}
 
-	useEffect(
-		() => {
-			let waiter = undefined
-			const setUp = async () => {
-				const {
-					beneficiary: ben,
-					stakeToken,
-					rewardToken,
-					beginBlock,
-					endBlock,
-				} = (await ctc.v.initial())[1]
-				setBeneficiary(reach.formatAddress(ben))
-				if (reach.formatAddress(ben) === String(user.address))
-					setShowClaim(true)
-				setStakeTok(b2N(stakeToken))
-				setRewardTok(b2N(rewardToken))
-				if (!(await user.account.tokenAccepted(b2N(stakeToken)))) setOptST(true)
-				setStakeTok(b2N(stakeToken))
-				if (!(await user.account.tokenAccepted(b2N(rewardToken))))
-					setOptRT(true)
-				setRewardTok(b2N(rewardToken))
-				setCreated(b2N(beginBlock))
-				const [sTokData, rTokData] = [
-					await arc69.fetch(b2N(stakeToken)),
-					await arc69.fetch(b2N(rewardToken)),
-				]
-				setSTok(sTokData?.['unit-name'] ?? 'STOK')
-				setRTok(rTokData?.['unit-name'] ?? 'RTOK')
-				waiter = setInterval(async () => {
-					const present = b2N(await reach.getNetworkTime())
-					const left = b2N(endBlock) - present
-					setEnd(left)
-					const localView = (await ctc.v.local(user.address))[1] ?? {
-						reward: 0,
-						staked: 0,
-					}
-					setStaking(
-						reach.isBigNumber(localView.staked)
-							? b2N(localView.staked)
-							: localView.staked
-					)
-					setRewards(
-						reach.isBigNumber(localView.reward)
-							? b2N(localView.reward)
-							: localView.reward
-					)
-					const { totalStaked } = b2N(await ctc.v.global()) ?? {
-						totalStaked: 0,
-					}
-					setTotalSTokens(totalStaked)
-				}, 3700)
-			}
-			setUp()
-			return () => {
-				clearInterval(waiter)
-				waiter = undefined
-			}
-		},
-		[
-			ctc.v,
-			ctc.v.initial,
-			poolInfo,
-			setRewardTok,
-			setStakeTok,
-			user.account,
-			user.address,
-		]
-	)
+	useEffect(() => {
+		let waiter = undefined
+		const setUp = async () => {
+			const {
+				beneficiary: ben,
+				stakeToken,
+				rewardToken,
+				beginBlock,
+				endBlock,
+			} = (await ctc.v.initial())[1]
+			setBeneficiary(reach.formatAddress(ben))
+			if (reach.formatAddress(ben) === String(user.address)) setShowClaim(true)
+			setStakeTok(b2N(stakeToken))
+			setRewardTok(b2N(rewardToken))
+			if (!(await user.account.tokenAccepted(b2N(stakeToken)))) setOptST(true)
+			setStakeTok(b2N(stakeToken))
+			if (!(await user.account.tokenAccepted(b2N(rewardToken)))) setOptRT(true)
+			setRewardTok(b2N(rewardToken))
+			setCreated(b2N(beginBlock))
+			const [sTokData, rTokData] = [
+				await arc69.fetch(b2N(stakeToken)),
+				await arc69.fetch(b2N(rewardToken)),
+			]
+			setSTok(sTokData?.['unit-name'] ?? 'STOK')
+			setRTok(rTokData?.['unit-name'] ?? 'RTOK')
+			waiter = setInterval(async () => {
+				const present = b2N(await reach.getNetworkTime())
+				const left = b2N(endBlock) - present
+				setEnd(left)
+				const localView = (await ctc.v.local(user.address))[1] ?? {
+					reward: 0,
+					staked: 0,
+				}
+				setStaking(
+					reach.isBigNumber(localView.staked)
+						? b2N(localView.staked)
+						: localView.staked
+				)
+				setRewards(
+					reach.isBigNumber(localView.reward)
+						? b2N(localView.reward)
+						: localView.reward
+				)
+				const { totalStaked } = b2N((await ctc.v.global())?.totalStaked) ?? {
+					totalStaked: 0,
+				}
+				setTotalSTokens(totalStaked)
+			}, 3700)
+		}
+		setUp()
+		return () => {
+			clearInterval(waiter)
+			waiter = undefined
+		}
+	}, [
+		ctc.v,
+		ctc.v.initial,
+		poolInfo,
+		setRewardTok,
+		setStakeTok,
+		user.account,
+		user.address,
+	])
 	return (
 		<div className={cf(s.wMax, s.flexCenter, s.flex)}>
 			<div className={cf(s.wMax, s.p5, s.flex, s.flexCenter, p.pool)}>
