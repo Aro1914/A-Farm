@@ -6,7 +6,9 @@
 'reach 0.1'
 
 export const main = Reach.App(() => {
-	const Admin = Participant('Admin', {})
+	const Admin = Participant('Admin', {
+		deployed: Fun([Contract], Null),
+	})
 	const Post = Events({
 		postBeneficiary: [Address],
 		postPool: [Contract],
@@ -18,6 +20,7 @@ export const main = Reach.App(() => {
 	Admin.publish()
 	commit()
 	Admin.publish()
+	Admin.interact.deployed(getContract())
 	Post.postBeneficiary(Admin)
 	const [id] = parallelReduce([0])
 		.invariant(balance() == 0)

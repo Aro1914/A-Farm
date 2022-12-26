@@ -134,11 +134,17 @@ const ReachContextProvider = ({ children }) => {
 
 	const launch = () => {
 		const ctc = user.account.contract(mainCtc)
-		ctc.p.Admin({})
+		ctc.p.Admin({
+			deployed: (contract) => {
+				setContract({ appID: reach.bigNumberToNumber(contract) })
+				alert(
+					`Contract deployed with APP ID: ${reach.bigNumberToNumber(contract)}`
+				)
+			},
+		})
 		ctc.events.postPool.monitor(postPool)
 		ctc.events.postBeneficiary.monitor(async ({ what }) => {
 			setBeneficiary(reach.formatAddress(what[0]))
-			setContract({ appID: await ctc.getInfo() })
 		})
 	}
 
