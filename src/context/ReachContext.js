@@ -168,7 +168,7 @@ const ReachContextProvider = ({ children }) => {
 				user.account,
 				assetInfo['name'],
 				assetInfo['symbol'],
-				{ supply: assetInfo['supply'] }
+				{ supply: assetInfo['supply'], decimals: 0 }
 			)
 			alert(`${assetInfo['name']} successfully mint with ID: ${id}`)
 		} catch (error) {
