@@ -171,7 +171,7 @@ const Pool = ({ poolInfo }) => {
 						? b2N(localView.reward)
 						: localView.reward
 				)
-				const { totalStaked } = (await ctc.v.global()) ?? {
+				const { totalStaked } = (await ctc.v.global())[1] ?? {
 					totalStaked: 0,
 				}
 				setTotalSTokens(
