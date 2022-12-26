@@ -279,7 +279,8 @@ const Create = () => {
 				disabled={
 					!farmInfo.stakeToken ||
 					!farmInfo.rewardToken ||
-					!farmInfo.blocks ||
+					!farmInfo.beginBlock ||
+					!farmInfo.endBlock ||
 					!farmInfo.totalRewardAmount ||
 					!farmInfo.totalAlgoRewardAmount ||
 					!farmInfo.lockLengthBlocks
