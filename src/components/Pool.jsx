@@ -138,7 +138,7 @@ const Pool = ({ poolInfo }) => {
 					rewardToken,
 					beginBlock,
 					endBlock,
-				} = (await ctc.v.initial)[1]
+				} = (await ctc.v.initial())[1]
 				setBeneficiary(reach.formatAddress(ben))
 				if (reach.formatAddress(ben) === String(user.address))
 					setShowClaim(true)
@@ -187,13 +187,13 @@ const Pool = ({ poolInfo }) => {
 			}
 		},
 		[
-			// ctc.v,
-			// ctc.v.initial,
-			// poolInfo,
-			// setRewardTok,
-			// setStakeTok,
-			// user.account,
-			// user.address,
+			ctc.v,
+			ctc.v.initial,
+			poolInfo,
+			setRewardTok,
+			setStakeTok,
+			user.account,
+			user.address,
 		]
 	)
 	return (
