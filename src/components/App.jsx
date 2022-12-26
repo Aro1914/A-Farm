@@ -306,7 +306,7 @@ const App = () => {
 					{pools.map((el, i) => (
 						<Pool
 							key={i}
-							poolCtc={el.poolCtc}
+							poolInfo={el.poolCtc}
 						/>
 					))}
 					<Mint />
