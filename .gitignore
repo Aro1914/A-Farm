@@ -1,0 +1,10 @@
+node_modules/
+tls/
+.reach/
+Dockerfile
+.dockerignore
+package-lock.json
+workingPromises.js
+package.json
+.vscode
+temp/
