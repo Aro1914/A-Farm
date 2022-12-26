@@ -91,7 +91,7 @@ const Pool = ({ poolInfo }) => {
 
 	const withdraw = async (amount) => {
 		if (
-			b2N(((await ctc.v.local(user.address)[1]) ?? { staked: 0 })?.staked) >=
+			b2N(((await ctc.v.local(user.address))[1] ?? { staked: 0 })?.staked) >=
 			amount
 		)
 			try {
