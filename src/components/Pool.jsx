@@ -171,10 +171,12 @@ const Pool = ({ poolInfo }) => {
 						? b2N(localView.reward)
 						: localView.reward
 				)
-				const { totalStaked } = b2N((await ctc.v.global())?.totalStaked) ?? {
+				const { totalStaked } = (await ctc.v.global()) ?? {
 					totalStaked: 0,
 				}
-				setTotalSTokens(totalStaked)
+				setTotalSTokens(
+					reach.isBigNumber(totalStaked) ? b2N(totalStaked) : totalStaked
+				)
 			}, 3700)
 		}
 		setUp()
