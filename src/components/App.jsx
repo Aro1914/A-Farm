@@ -279,7 +279,7 @@ const Create = () => {
 				disabled={
 					!farmInfo.stakeToken ||
 					!farmInfo.rewardToken ||
-					!farmInfo.endBlock ||
+					!farmInfo.blocks ||
 					!farmInfo.totalRewardAmount ||
 					!farmInfo.totalAlgoRewardAmount ||
 					!farmInfo.lockLengthBlocks
@@ -301,17 +301,14 @@ const App = () => {
 			) : !contract.appID ? (
 				<Launch />
 			) : (
-				<div className={cf(s.window, s.wMax, s.flex, s.flexCenter)}>
-					<h1>Pools</h1>
+				<div className={cf(s.window, s.wMax, s.flex, s.flexCenter)}>					
 					{pools.map((el, i) => (
 						<Pool
 							key={i}
 							poolCtc={el.poolCtc}
 						/>
 					))}
-					<h2>Mint</h2>
 					<Mint />
-					<h2>Create</h2>
 					<Create />
 				</div>
 			)}
