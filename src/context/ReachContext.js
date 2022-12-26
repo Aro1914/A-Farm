@@ -134,6 +134,7 @@ const ReachContextProvider = ({ children }) => {
 
 	const launch = () => {
 		const ctc = user.account.contract(mainCtc)
+		ctc.p.Admin({})
 		ctc.events.postPool.monitor(postPool)
 		ctc.events.postBeneficiary.monitor(async ({ what }) => {
 			setBeneficiary(reach.formatAddress(what[0]))
