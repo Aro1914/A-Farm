@@ -132,7 +132,7 @@ const ReachContextProvider = ({ children }) => {
 		setPools([...currentPools])
 	}
 
-	const launch = async () => {
+	const launch = () => {
 		const ctc = user.account.contract(mainCtc)
 		ctc.events.postPool.monitor(postPool)
 		ctc.events.postBeneficiary.monitor(async ({ what }) => {

@@ -48,7 +48,9 @@ const Launch = () => {
 		<div className={cf(s.wMax, s.flex, s.flexCenter)}>
 			<button
 				className={cf(s.wMax, s.p5, s.flex, s.flexCenter, p.button)}
-				onClick={launch}
+				onClick={() => {
+					launch()
+				}}
 			>
 				Launch
 			</button>
