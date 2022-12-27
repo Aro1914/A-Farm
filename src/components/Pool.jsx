@@ -300,7 +300,8 @@ const Pool = ({ poolInfo }) => {
 					)}
 				</div>
 				<div className={cf(s.wMax, s.flex, s.flexCenter, p.dates)}>
-					Block Created: {created}, Ends In: {end} Blocks
+					Block Created: {created},{' '}
+					{`${end > 0 ? `Ends In: ${end} Blocks` : 'Ended'}`}
 				</div>
 			</div>
 		</div>
