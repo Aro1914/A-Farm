@@ -7,3 +7,4 @@ package-lock.json
 workingPromises.js
 .vscode
 temp/
+/build
