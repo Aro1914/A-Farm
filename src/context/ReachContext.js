@@ -188,7 +188,9 @@ const ReachContextProvider = ({ children }) => {
 					beginBlock: reach.bigNumberToNumber(await reach.getNetworkTime()),
 					endBlock: Number(farmInfo.endBlock),
 					totalRewardAmount: Number(farmInfo.totalRewardAmount),
-					totalAlgoRewardAmount: Number(farmInfo.totalAlgoRewardAmount),
+					totalAlgoRewardAmount: reach.parseCurrency(
+						Number(farmInfo.totalAlgoRewardAmount)
+					),
 					lockLengthBlocks: Number(farmInfo.lockLengthBlocks),
 					stakeToken: Number(farmInfo.stakeToken),
 					rewardToken: Number(farmInfo.rewardToken),
@@ -200,7 +202,9 @@ const ReachContextProvider = ({ children }) => {
 							'. Please sign the next transaction to save your farm on the platform'
 					)
 					try {
-						const id = await contractInstance.apis.notify(await farmCtc.getInfo())
+						const id = await contractInstance.apis.notify(
+							await farmCtc.getInfo()
+						)
 						alert('Farm uploaded with ID: ' + reach.bigNumberToNumber(id))
 					} catch (error) {
 						console.log({ error })
