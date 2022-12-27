@@ -225,13 +225,13 @@ const Pool = ({ poolInfo }) => {
 				<div className={cf(s.flex, s['flex_dColumn'], p.section)}>
 					<div className={cf(p.head)}>TVL</div>
 					<div className={cf(s.wMax, s.flex, s.flexBottom, p.lowerHalf)}>
-						{totalSTokens}
+						{totalSTokens} {sTok}
 					</div>
 				</div>
 				<div className={cf(s.flex, s['flex_dColumn'], p.section)}>
 					<div className={cf(p.head)}>Your Stake</div>
 					<div className={cf(s.wMax, s.flex, s.flexBottom, p.lowerHalf)}>
-						{staking}
+						{staking} {sTok}
 						<div className={cf(s.wMax, s.flex, s.flexCenter)}>
 							<label
 								className={cf(s.flex, s.flex_dColumn, s.wMax)}
@@ -282,7 +282,7 @@ const Pool = ({ poolInfo }) => {
 				<div className={cf(s.flex, s['flex_dColumn'], p.section)}>
 					<div className={cf(p.head)}>Your Rewards</div>
 					<div className={cf(s.wMax, s.flex, s.flexBottom, p.lowerHalf)}>
-						{rewards}
+						{rewards} {rTok}
 					</div>
 					<button
 						className={cf(s.wMax, s.p5, s.flex, s.flexCenter, p.button)}
